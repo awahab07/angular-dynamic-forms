@@ -25,8 +25,47 @@ angular.module('dynamicFormsApp')
     };
 
     vm.model = {};
-
-    vm.fields = {
+    
+    vm.sections = [
+        {
+            title: "Section 1",
+            fields: [
+                {
+                  key: 'email',
+                  type: 'input',
+                  templateOptions: {
+                    label: 'Username',
+                    type: 'email',
+                    placeholder: 'Email address',
+                    required: true
+                  }
+                }
+            ]
+        },
+        {
+            title: "Section 2",
+            fields: [
+                {
+                  key: 'firstName',
+                  type: 'input',
+                  templateOptions: {
+                    label: 'First Name',
+                    required: true
+                  }
+                },
+                {
+                  key: 'lastName',
+                  type: 'input',
+                  templateOptions: {
+                    label: 'Last Name',
+                    required: true
+                  }
+                }
+            ]
+        }
+    ];
+    
+    /*vm.fields = {
       step1: [
         {
           key: 'email',
@@ -57,12 +96,18 @@ angular.module('dynamicFormsApp')
           }
         }
       ]
-    };
+    };*/
 
     vm.originalFields = angular.copy(vm.fields);
-
+    
+    vm.formAttemp = Date().substring(0, 33);
+    
     // function definition
     function finishWizard() {
       alert(JSON.stringify(vm.model), null, 2);
+      if(Ext && Ext.isSpace) {
+          var spaceStorage = Ext.space.SecureLocalStorage.get("DataEntryForm_1");
+          spaceStorage.set(formAttemp, vm.model);
+      }
     }
   });

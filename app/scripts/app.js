@@ -20,7 +20,8 @@ angular
     'ngTouch',
     'formly',
     'formlyBootstrap',
-    /*'formlyIonic',*/
+    /*'ionic',
+    'formlyIonic',*/
     'mgo-angular-wizard'
   ])
   .config(function ($routeProvider, formlyConfigProvider) {
